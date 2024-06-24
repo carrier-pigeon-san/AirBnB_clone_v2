@@ -1,0 +1,4 @@
+# Ignore files:
+file.json
+# Ignore directories:
+**/__pycache__/
