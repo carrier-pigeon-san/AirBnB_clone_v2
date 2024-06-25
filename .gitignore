@@ -1,4 +1,7 @@
 # Ignore files:
 file.json
+main_delete.py
+my_tests.py
 # Ignore directories:
 **/__pycache__/
+**/venv/
