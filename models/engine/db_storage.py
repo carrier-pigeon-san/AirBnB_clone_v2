@@ -42,7 +42,8 @@ class DBStorage:
         from models.review import Review
 
         models = {
-            'State': State, 'City': City
+            'State': State, 'City': City, 'User': User, 'Place': Place,
+            'Review': Review, 'Amenity': Amenity
         }
         obj_list = {}
         if cls:
@@ -69,16 +70,22 @@ class DBStorage:
         self.__session.commit()
 
     def delete(self, obj=None):
-        """"""
+        """Delete from the current database session obj if not None
+        """
         if obj:
             self.__session.delete(obj)
 
     def reload(self):
-        """Delete from the current database session obj if not None
+        """Create all tables in the database
+        Create the current database session
         """
         from models.base_model import Base
         from models.state import State
         from models.city import City
+        from models.user import User
+        from models.place import Place
+        from models.amenity import Amenity
+        from models.review import Review
 
         Base.metadata.create_all(self.__engine)
         Session = sessionmaker(bind=self.__engine, expire_on_commit=False)
