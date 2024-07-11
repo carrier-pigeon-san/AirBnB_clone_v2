@@ -10,9 +10,9 @@ def do_pack():
 
     timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
     file = 'versions/web_static_' + timestamp + '.tgz'
-    local("mkdir versions")
+    local("mkdir -p versions")
     result = local(f"tar -cvzf {file} web_static")
     if result.succeeded:
         return file
     else:
-        return
+        return None
