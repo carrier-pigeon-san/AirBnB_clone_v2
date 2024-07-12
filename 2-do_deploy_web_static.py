@@ -23,8 +23,6 @@ def do_deploy(archive_path):
     """Distributes an archive to your web servers"""
 
     env.hosts = ['100.26.223.74', '54.237.53.61']
-    env.user = 'ubuntu'
-    env.key_filename = '~/.ssh/alx_key'
     if archive_path:
         releases = "/data/web_static/releases"
         file = archive_path.split('/')[-1].split('.')[0]
