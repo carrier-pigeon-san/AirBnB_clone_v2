@@ -27,7 +27,7 @@ def do_deploy(archive_path):
 
     if not archive_path or not os.path.isfile(archive_path):
         return False
-    
+
     try:
         file = archive_path.split('/')[-1]
         file_no_ext = file.split('.')[0]
