@@ -34,7 +34,7 @@ def do_deploy(archive_path):
         releases = "/data/web_static/releases"
         extract_path = f"{releases}/{file_no_ext}"
 
-        put((archive_path), f"/tmp/{file}")
+        put(archive_path, f"/tmp/{file}")
 
         run(f"tar -xzf /tmp/{file} -C {extract_path}")
 
