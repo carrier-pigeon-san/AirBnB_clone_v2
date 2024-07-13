@@ -6,3 +6,4 @@ main_place_amenities.py
 # Ignore directories:
 **/__pycache__/
 **/venv/
+**/fab_pkgs/
