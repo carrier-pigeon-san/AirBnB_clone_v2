@@ -6,11 +6,12 @@ import os
 from fabric.api import *
 from datetime import datetime
 
+env.hosts = ['100.26.223.74', '54.237.53.61']
+env.user = 'ubuntu'
+env.key_filename = '~/.ssh/alx_key'
 
 def do_deploy(archive_path):
     """Distributes an archive to your web servers"""
-
-    env.hosts = ['100.26.223.74', '54.237.53.61']
 
     if not archive_path or not os.path.isfile(archive_path):
         return False
