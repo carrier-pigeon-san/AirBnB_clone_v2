@@ -7,19 +7,6 @@ from fabric.api import *
 from datetime import datetime
 
 
-def do_pack():
-    """Generates a .tgz archive from the contents of the web_static folder"""
-
-    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-    file = 'versions/web_static_' + timestamp + '.tgz'
-    local("mkdir -p versions")
-    result = local(f"tar -cvzf {file} web_static")
-    if result.succeeded:
-        return file
-    else:
-        return None
-
-
 def do_deploy(archive_path):
     """Distributes an archive to your web servers"""
 
@@ -36,9 +23,15 @@ def do_deploy(archive_path):
 
         put(archive_path, f"/tmp/{file}")
 
+        run(f"mkdir -p {extract_path}")
+
         run(f"tar -xzf /tmp/{file} -C {extract_path}")
 
         run(f"rm /tmp/{file}")
+
+        run(f"mv {extract_path}/web_static/* {extract_path}")
+
+        run(f"rm -rf {extract_path}/web_static")
 
         run("rm -rf /data/web_static/current")
 
