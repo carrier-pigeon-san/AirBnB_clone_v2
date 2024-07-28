@@ -25,7 +25,7 @@ def c_route(text):
     return f"C {escape(text)}".replace("_", " ")
 
 
-@app.route("/python")
+@app.route("/python", strict_slashes=False)
 @app.route("/python/<text>", strict_slashes=False)
 def python_route(text="is cool"):
     """Returns a given string through the variable in the route"""
