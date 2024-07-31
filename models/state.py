@@ -21,6 +21,6 @@ class State(BaseModel, Base):
         cty_objs = fs.all(City)
         state_cities = []
         for value in cty_objs.values():
-            if value['state_id'] == self.id:
+            if value.get('state_id') == self.id:
                 state_cities.append(value)
         return state_cities
