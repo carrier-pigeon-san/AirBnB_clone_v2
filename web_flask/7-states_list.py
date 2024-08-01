@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """
 The module contains a script that starts a web application
-Fetches data from the storage engine
+Fetches data from the storage engine and populates a html page
 """
 from flask import Flask
 from flask import render_template
+from models import storage
 
 app = Flask(__name__)
 
@@ -12,18 +13,15 @@ app = Flask(__name__)
 @app.teardown_appcontext
 def close_session(exception=None):
     """Removes the current SQLAlchemy Session"""
-    from models import storage
-
     storage.close()
 
 
 @app.route('/states_list', strict_slashes=False)
 def states_list():
     """Displays a html page inside the 'BODY' tag"""
-    from models import storage as db
     from models.state import State
 
-    states = db.all(State).values()
+    states = storage.all(State).values()
     return render_template("7-states_list.html", states=states)
 
 
